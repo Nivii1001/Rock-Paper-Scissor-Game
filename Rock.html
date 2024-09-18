@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <title>Rock</title>
+    <head>
+        <style>
+            body{
+                padding-top: 300px;
+                background-color:whitesmoke;
+            }
+            button{
+                background-color: aquamarine;
+                color: black;
+
+                cursor:pointer;
+
+
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+        <p><h1>Rock Paper scissor</h1></p>
+        <button onclick="rock(0)">Rock</button>
+        <button onclick="rock(1)">paper</button>
+        <button onclick="rock(2)">scissors</button>
+        <button onclick="rock(3)">Play Again</button>
+    </center>
+        <script>
+            
+            let ran=(Math.floor(Math.random()*10))%3
+            
+            let score = JSON.parse(localStorage.getItem('score')) || {
+            tie: 0,
+            wins: 0,
+            loss: 0
+        };
+
+           function rock(user){
+            
+            if(user==ran){
+                score.tie+=1;
+                alert(`Its a tie!!!\n You  and computer picked Same
+wins: ${score.wins} loss: ${score.loss} Tie: ${score.tie}`)
+            }else if(user==0 && ran==1){
+                score.loss+=1;
+                alert(`you lose!!! \nYou picked:Rock,\ncomputer picked:Paper 
+wins: ${score.wins} loss: ${score.loss} Tie: ${score.tie}`)
+            }
+            else if(user==0 && ran==2){
+                score.wins+=1;
+                alert(`you win!!! \nYou picked:Rock,\nComputer Picked:Scissor 
+wins: ${score.wins} loss: ${score.loss} Tie: ${score.tie}`)
+            }
+            else if(user==1 && ran==0){
+                score.wins+=1;
+                alert(`you win!!! \nYou picked:Paper,\nComputer Picked:rock 
+wins: ${score.wins} loss: ${score.loss} Tie: ${score.tie}`)
+            }
+            else if(user==2 && ran==1 ){
+                score.wins+=1;
+                alert(`you win!!! \nYou picked:Scissor,\nComputer Picked:Paper 
+wins: ${score.wins} loss: ${score.loss} Tie: ${score.tie}`)
+            }
+            else if(user==1 && ran==2 ){
+                score.loss+=1;
+                alert(`you lose!!!\n You picked:paper,\nComputer Picked:Scissor 
+wins: ${score.wins} loss: ${score.loss} Tie: ${score.tie}`)
+
+
+            }
+            else if(user==2 && ran==0){
+                score.loss+=1;
+
+                alert(`you lose!!!\n You picked:Scissor,\nComputer Picked:Rock 
+wins: ${score.wins} loss: ${score.loss} Tie: ${score.tie}`)
+            }
+            else if(user==2 && ran==1){
+                score.wins+=1;
+                alert(`you win!!! \nYou picked: Scissor,\nComputer Picked: paper
+wins: ${score.wins} loss: ${score.loss} Tie: ${score.tie}`)
+            }
+            else{
+                score.wins=0;
+                score.tie=0;
+                score.loss=0;
+                alert(`Play Again!!!
+wins: ${score.wins} loss: ${score.loss} Tie: ${score.tie}`)
+            }
+            localStorage.setItem('score',JSON.stringify(score))
+
+           }
+        </script>
+
+    </body>
+</html>
